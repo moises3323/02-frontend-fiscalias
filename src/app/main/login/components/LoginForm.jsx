@@ -23,7 +23,7 @@ const LoginForm = () => {
       }}
     >
       <Typography variant="h1" color="primary" sx={{ marginBottom: '80px' }}>
-        Iniciar sesion xd
+        Iniciar sesión
       </Typography>
       <Box component="form" onSubmit={formik.handleSubmit}>
         <ApsTextField

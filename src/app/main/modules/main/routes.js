@@ -1,29 +1,17 @@
 import { lazy } from 'react';
 
-const DashboardModule = lazy(() =>
+const FiscaliasModule = lazy(() =>
   import(
-    /* webpackChunkName: "DashboardModule" */ '../dashboard/pages/DashboardModule'
-  )
-);
-const ProductsModule = lazy(() =>
-  import(
-    /* webpackChunkName: "ProductsModule" */ '../products/pages/ProductsModule'
+    /* webpackChunkName: "FiscaliasModule" */ '../fiscalias/pages/FiscaliasModule'
   )
 );
 
 export const routes = [
   {
-    path: 'dashboard',
-    to: 'dashboard',
-    Component: DashboardModule,
-    name: 'Dashboard',
-    requiredAuth: false,
-  },
-  {
-    path: 'productos',
-    to: 'productos',
-    Component: ProductsModule,
-    name: 'Dashboard',
+    path: 'fiscalias',
+    to: 'fiscalias',
+    Component: FiscaliasModule,
+    name: 'Fiscalias',
     requiredAuth: false,
   },
 ];

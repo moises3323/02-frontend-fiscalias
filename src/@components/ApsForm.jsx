@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Grid, Paper, Typography } from '@mui/material';
 import ApsAutoComplete from './ApsAutoComplete';
 import ApsTextField from './ApsTextField';
 
-const ApsForm = ({ title, titleProps = {}, fields = [], formik }) => {
+const ApsForm = ({ title, titleProps = {}, fields = [], formik, paper }) => {
+  const Container = paper ? (
+    <Paper sx={{ padding: '20px', borderRadius: '16px' }} />
+  ) : (
+    Fragment
+  );
   return (
     <>
       {title && (
@@ -15,7 +20,7 @@ const ApsForm = ({ title, titleProps = {}, fields = [], formik }) => {
           {...titleProps}
         />
       )}
-      <Paper sx={{ padding: '20px', borderRadius: '16px' }}>
+      <Container>
         <Grid container spacing={3}>
           {fields.map((field) =>
             field.type === 'autocomplete' ? (
@@ -25,7 +30,7 @@ const ApsForm = ({ title, titleProps = {}, fields = [], formik }) => {
             )
           )}
         </Grid>
-      </Paper>
+      </Container>
     </>
   );
 };

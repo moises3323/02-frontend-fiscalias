@@ -9,11 +9,11 @@ const leftGridProps = {
   sm: false,
   md: 6,
   sx: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: 'url(/img/MP_logo.png)',
     backgroundRepeat: 'no-repeat',
     backgroundColor: (t) =>
       t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-    backgroundSize: 'cover',
+    //backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
 };
@@ -29,6 +29,8 @@ const rightGridProps = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    backgroundColor: (t) =>
+      t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
   },
 };
 

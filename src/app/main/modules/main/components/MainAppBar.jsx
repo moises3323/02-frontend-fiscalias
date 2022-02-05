@@ -1,12 +1,14 @@
-import { AppBar as MuiAppBar, Toolbar, IconButton, Badge } from '@mui/material';
+import { AppBar as MuiAppBar, Toolbar, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
   AccountCircle as AccountCircleIcon,
-  Notifications as NotificationsIcon,
   Menu as MenuIcon,
 } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import * as Actions from '../store/actions';
+import MoreMenu from '@components/generalContainer/MoreMenu';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
   backgroundColor: theme.palette.secondary['50'],
@@ -18,6 +20,7 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
 
 const MainAppBar = ({ sx }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <AppBar elevation={0} position="absolute" sx={sx}>
@@ -42,29 +45,18 @@ const MainAppBar = ({ sx }) => {
         >
           <MenuIcon />
         </IconButton>
-        <div>
-          <IconButton
-            color="primary"
-            sx={{
-              minHeight: '48px',
-              minWidth: '48px',
-              margin: '8px',
-            }}
-          >
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            color="primary"
-            sx={{
-              minHeight: '48px',
-              minWidth: '48px',
-              margin: '8px',
-            }}
-          >
-            <AccountCircleIcon />
-          </IconButton>
+        <div style={{ marginRight: '16px' }}>
+          <MoreMenu
+            icon={<AccountCircleIcon />}
+            actions={[
+              {
+                id: 1,
+                icon: <ArrowBackIcon />,
+                title: 'Salir',
+                onClick: () => navigate('/', { replace: true }),
+              },
+            ]}
+          />
         </div>
       </Toolbar>
     </AppBar>

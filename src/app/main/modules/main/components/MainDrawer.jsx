@@ -13,13 +13,9 @@ import {
 } from '@mui/material';
 
 import {
-  BarChart as BarChartIcon,
   ChevronLeft as ChevronLeftIcon,
-  Dashboard as DashboardIcon,
-  Layers as LayersIcon,
   Menu as MenuIcon,
-  People as PeopleIcon,
-  ShoppingCart as ShoppingCartIcon,
+  Gavel as GavelIcon,
 } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -64,7 +60,6 @@ const Avatar = styled(MuiAvatar)(({ theme, open }) => ({
     [theme.breakpoints.up('sm')]: {
       width: open ? '86px' : '48px',
       height: open ? '86px' : '48px',
-      backgroundColor: 'red',
     },
   },
 }));
@@ -109,29 +104,9 @@ const MainDrawer = () => {
   };
   const routes = [
     {
-      to: 'dashboard',
-      icon: <DashboardIcon sx={styledIcon} />,
-      name: 'Dashboard',
-    },
-    {
-      to: 'productos',
-      icon: <ShoppingCartIcon sx={styledIcon} />,
-      name: 'Productos',
-    },
-    {
-      to: 'people',
-      icon: <PeopleIcon sx={styledIcon} />,
-      name: 'People',
-    },
-    {
-      to: 'charts',
-      icon: <BarChartIcon sx={styledIcon} />,
-      name: 'Charts',
-    },
-    {
-      to: 'layers',
-      icon: <LayersIcon sx={styledIcon} />,
-      name: 'Layers',
+      to: 'fiscalias',
+      icon: <GavelIcon sx={styledIcon} />,
+      name: 'Fiscalias',
     },
   ];
 
@@ -157,7 +132,7 @@ const MainDrawer = () => {
       </Toolbar>
 
       <Box sx={boxIconAvatar}>
-        <Avatar open={open}>H</Avatar>
+        <Avatar open={open} src=""></Avatar>
       </Box>
 
       {routes.map((route) => (

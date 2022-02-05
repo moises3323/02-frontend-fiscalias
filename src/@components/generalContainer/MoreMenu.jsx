@@ -33,7 +33,7 @@ const StyledMenu = styled((props) => (
     borderRadius: 6,
     paddingTop: 0,
     paddingBottom: 0,
-    width: 375,
+    width: 'auto',
   },
 }));
 
@@ -49,7 +49,7 @@ const menuStyle = {
   },
 };
 
-export default function MoreMenu({ actions = [] }) {
+export default function MoreMenu({ actions = [], icon }) {
   //MUI
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -79,7 +79,7 @@ export default function MoreMenu({ actions = [] }) {
         onClick={sm ? handleDrawerOpen : handleClick}
         sx={{ ml: '16px', height: '36px', width: '36px' }}
       >
-        <MoreHorizIcon color="primary" />
+        {icon ? icon : <MoreHorizIcon color="primary" />}
       </IconButton>
       <StyledMenu
         id="more-menu"

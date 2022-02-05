@@ -1,7 +1,7 @@
 import * as types from '../actions/mainDrawer.action';
 
 const initialState = {
-  openDrawer: false,
+  openDrawer: true,
 };
 
 const mainDrawer = function (state = initialState, action) {
