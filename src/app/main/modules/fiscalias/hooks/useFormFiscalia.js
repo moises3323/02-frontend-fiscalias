@@ -1,3 +1,4 @@
+import React from 'react';
 import { useFormikFields } from '@hooks';
 import { FieldValidations } from '@utils';
 import { useEffect } from 'react';
@@ -90,15 +91,15 @@ const fields = [
 ];
 
 const useFormFiscalia = () => {
+
   const form = useSelector(
     ({ FiscaliasModule }) => FiscaliasModule.fiscaliaForm.form
   );
-  const formik = useFormikFields({ fields });
-  useEffect(()=>{
-    formik.setValues({...form})
-  },[form]);
 
- 
+  const formik = useFormikFields({ fields });
+  useEffect(() => {
+    formik.setValues({ ...form });
+  }, [form]);
 
   const formikSubmit = () => {
     console.log(formik.values);

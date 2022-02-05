@@ -31,7 +31,12 @@ export default function ApsBasicDialog({
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle sx={{ padding: '16px 24px 0px 24px' }}>
-          <Typography variant="h5" children={title} color="primary" />
+          <Typography
+            component="div"
+            variant="h5"
+            children={title}
+            color="primary"
+          />
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">

@@ -4,6 +4,7 @@ import * as types from '../actions/fiscalia.actions';
 const initialState = {
   open: false,
   form: FiscaliaInterface(),
+  fiscaliasList: [],
 };
 
 const fiscaliaReducer = function (state = initialState, action) {
@@ -18,6 +19,12 @@ const fiscaliaReducer = function (state = initialState, action) {
       return {
         ...state,
         form: { ...action.payload },
+      };
+    }
+    case types.GET_FISCALIAS: {
+      return {
+        ...state,
+        fiscaliasList: { ...action.payload },
       };
     }
     default: {

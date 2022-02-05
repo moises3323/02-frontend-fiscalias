@@ -8,7 +8,11 @@ import FormFiscalia from '../components/FormFiscalia';
 import withReducer from '@store/withReducer';
 import reducer from '../store/reducers';
 import { useDispatch } from 'react-redux';
-import { setFormFiscalia, toggleFormFiscalia } from '../store/actions';
+import {
+  getFiscalias,
+  setFormFiscalia,
+  toggleFormFiscalia,
+} from '../store/actions';
 import AddIcon from '@mui/icons-material/Add';
 
 const itemsActions = [
@@ -28,6 +32,12 @@ const itemsActions = [
 
 const FiscaliasModule = () => {
   const dispatch = useDispatch();
+
+  console.log(
+    'hola:',
+    dispatch(getFiscalias('https://jsonplaceholder.typicode.com/todos'))
+  );
+
   const handleOpen = () => {
     dispatch(toggleFormFiscalia());
   };
