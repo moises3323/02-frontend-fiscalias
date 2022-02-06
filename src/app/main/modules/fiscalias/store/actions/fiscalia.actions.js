@@ -1,5 +1,8 @@
 import { getRequest, postRequest, deleteRequest } from '@utils/httpMethods';
-import { FiscaliaInterface, FiscaliaPostInterface } from '../../models/fiscaliaInterface';
+import {
+  FiscaliaInterface,
+  FiscaliaPostInterface,
+} from '../../models/fiscaliaInterface';
 export const TOGGLE_FORM_FISCALIA = '[FISCALIA] TOGGLE_FORM_FISCALIA';
 export const SET_FORM_FISCALIA = '[FISCALIA] SET_FORM_FISCALIA';
 export const GET_FISCALIAS = '[FISCALIA] GET_FISCALIAS';
@@ -17,14 +20,12 @@ export function toggleFormFiscalia() {
   };
 }
 
-
 export function resetForm() {
   return {
     type: SET_FORM_FISCALIA,
     payload: FiscaliaInterface(),
   };
 }
-
 
 export function setFormFiscalia(form) {
   return {
@@ -55,13 +56,10 @@ export function cargarCatalogos() {
 export function createFiscalia(body) {
   return async (dispatch) => {
     dispatch({ type: CREATE_FISCALIA });
-    console.log('body:', body);
     const resp = await postRequest(
       `${urlBase}/fiscalia`,
       FiscaliaPostInterface(body)
     );
-    //
-
     dispatch({ type: SET_CREATE_FISCALIA, payload: [resp.data] });
   };
 }
