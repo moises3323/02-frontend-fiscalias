@@ -30,13 +30,22 @@ const fiscaliaReducer = function (state = initialState, action) {
         processing: true,
       };
     }
-    case types.SET_CREATE_FISCALIA:
+    case types.SET_CREATE_FISCALIA: {
+      return {
+        ...state,
+        fiscaliasList: [
+          ...state.fiscaliasList,
+          ...action.payload.map((fiscalia) => FiscaliaInterface(fiscalia)),
+        ],
+        processing: false,
+        open: false,
+        form: FiscaliaInterface(),
+      };
+    }
     case types.GET_FISCALIAS: {
       return {
         ...state,
-        processing: false,
         fiscaliasList: [
-          ...state.fiscaliasList,
           ...action.payload.map((fiscalia) => FiscaliaInterface(fiscalia)),
         ],
       };

@@ -1,7 +1,7 @@
 export const FiscaliaInterface = (fiscalia = {}) => {
   let data = {
     nombre: fiscalia.nombre || '',
-    estado: fiscalia.estado ?? '-1',
+    estado: fiscalia.estado ?? 1,
     departamento_id: fiscalia.departamento
       ? {
           value: fiscalia.departamento.id,
@@ -19,9 +19,9 @@ export const FiscaliaInterface = (fiscalia = {}) => {
         },
     direccion: fiscalia.direccion || '',
     descripcion: fiscalia.descripcion || '',
-  }
-  if(fiscalia.id){
-    data.id=fiscalia.id
+  };
+  if (fiscalia.id) {
+    data.id = fiscalia.id;
   }
   return data;
 };

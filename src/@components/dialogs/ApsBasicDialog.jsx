@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -15,6 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ApsBasicDialog({
   open,
+  toogleModalFunction,
   title,
   description,
   cancelProps,
@@ -23,6 +24,11 @@ export default function ApsBasicDialog({
   content,
   deleteButtonProps,
 }) {
+
+  useEffect(() => {
+    toogleModalFunction && toogleModalFunction(open);
+  }, [open]);
+
   return (
     <div>
       <Dialog

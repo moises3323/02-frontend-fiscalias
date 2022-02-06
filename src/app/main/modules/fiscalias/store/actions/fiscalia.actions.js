@@ -1,17 +1,13 @@
 import { getRequest, postRequest, deleteRequest } from '@utils/httpMethods';
-import { FiscaliaPostInterface } from '../../models/fiscaliaInterface';
-
+import { FiscaliaInterface, FiscaliaPostInterface } from '../../models/fiscaliaInterface';
 export const TOGGLE_FORM_FISCALIA = '[FISCALIA] TOGGLE_FORM_FISCALIA';
 export const SET_FORM_FISCALIA = '[FISCALIA] SET_FORM_FISCALIA';
 export const GET_FISCALIAS = '[FISCALIA] GET_FISCALIAS';
-
 export const CREATE_FISCALIA = '[FISCALIA] CREATE_FISCALIA';
 export const SET_CREATE_FISCALIA = '[FISCALIA] SET_CREATE_FISCALIA';
-//export const CREATE_FISCALIA_ERROR = '[FISCALIA] CREATE_FISCALIA_ERROR';
-
 export const DELETE_FISCALIA = '[FISCALIA] DELETE_FISCALIA';
-
 export const CARGAR_CATALOGOS = '[FISCALIA] CARGAR_CATALOGOS';
+export const RESET_FORM = '[FISCALIA] RESET_FORM';
 
 const urlBase = 'http://localhost:8080';
 
@@ -20,6 +16,15 @@ export function toggleFormFiscalia() {
     type: TOGGLE_FORM_FISCALIA,
   };
 }
+
+
+export function resetForm() {
+  return {
+    type: SET_FORM_FISCALIA,
+    payload: FiscaliaInterface(),
+  };
+}
+
 
 export function setFormFiscalia(form) {
   return {

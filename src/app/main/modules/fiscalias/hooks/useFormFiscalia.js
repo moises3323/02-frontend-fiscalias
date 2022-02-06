@@ -3,7 +3,12 @@ import { useFormikFields, useUpdateEffect } from '@hooks';
 import { FieldValidations } from '@utils';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createFiscalia } from '../store/actions';
+import {
+  createFiscalia,
+  deleteFiscalia,
+  resetForm,
+  toggleFormFiscalia,
+} from '../store/actions';
 
 const useFormFiscalia = () => {
   const dispatch = useDispatch();
@@ -16,7 +21,12 @@ const useFormFiscalia = () => {
   const departamentos = useSelector(
     ({ FiscaliasModule }) => FiscaliasModule.fiscaliaForm.departamentos
   );
-
+  const open = useSelector(
+    ({ FiscaliasModule }) => FiscaliasModule.fiscaliaForm.open
+  );
+  const isProcessing = useSelector(
+    ({ FiscaliasModule }) => FiscaliasModule.fiscaliaForm.processing
+  );
   const [municipiosFiltered, setMunicipiosFiltered] = React.useState([]);
 
   const formik = useFormikFields({ fields: fields() });
@@ -36,7 +46,15 @@ const useFormFiscalia = () => {
   const formikSubmit = () => {
     dispatch(createFiscalia(formik.values));
   };
+  const handleOpen = () => {
+    dispatch(toggleFormFiscalia());
+  };
 
+  const toogleModalFunction = (open) => {
+    !open && dispatch(resetForm());
+  };
+
+  const fiscaliaDelete = () => dispatch(deleteFiscalia(formik.values.id));
   //INPUTS
   function fields() {
     return [
@@ -107,7 +125,16 @@ const useFormFiscalia = () => {
     ];
   }
 
-  return { fields: fields(), formik, formikSubmit };
+  return {
+    fields: fields(),
+    formik,
+    formikSubmit,
+    open,
+    isProcessing,
+    handleOpen,
+    toogleModalFunction,
+    fiscaliaDelete,
+  };
 };
 
 export default useFormFiscalia;
