@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import GeneralContainer from '@components/generalContainer/GeneralContainer';
 import PrintIcon from '@mui/icons-material/Print';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
@@ -7,13 +7,14 @@ import ApsTable from '@components/table/ApsTable';
 import FormFiscalia from '../components/FormFiscalia';
 import withReducer from '@store/withReducer';
 import reducer from '../store/reducers';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getFiscalias,
   setFormFiscalia,
   toggleFormFiscalia,
 } from '../store/actions';
 import AddIcon from '@mui/icons-material/Add';
+import { FiscaliaInterface } from '../models/fiscaliaInterface';
 
 const itemsActions = [
   {
@@ -33,15 +34,19 @@ const itemsActions = [
 const FiscaliasModule = () => {
   const dispatch = useDispatch();
 
-  console.log(
-    'hola:',
-    dispatch(getFiscalias('https://jsonplaceholder.typicode.com/todos'))
+  useLayoutEffect(() => {
+    dispatch(getFiscalias());
+  }, []);
+
+  const fiscalias = useSelector(
+    ({ FiscaliasModule }) => FiscaliasModule?.fiscaliaForm?.fiscaliasList
   );
 
   const handleOpen = () => {
     dispatch(toggleFormFiscalia());
   };
   const handleEditar = (form) => {
+    console.log('form: ', form);
     dispatch(setFormFiscalia(form));
     dispatch(toggleFormFiscalia());
   };
@@ -62,24 +67,13 @@ const FiscaliasModule = () => {
       align: 'right',
     },
   ];
-  function createData(nombre, direccion, estado, acciones) {
-    return { nombre, direccion, estado, acciones };
-  }
 
-  const rows = [
-    createData(
-      'Fiscalía de la mujer',
-      'El Caulote, Jutiapa',
-      'Activo',
-      (value) => handleEditar(value)
-    ),
-    createData(
-      'Fiscalía del hombre',
-      'El Caulote, Jutiapa',
-      'Activo',
-      (value) => handleEditar(value)
-    ),
-  ];
+  const rows = fiscalias.map((fiscalia) => ({
+    nombre: fiscalia.nombre,
+    direccion: fiscalia.direccion,
+    estado: fiscalia.estado,
+    acciones: (value) => handleEditar(fiscalia),
+  }));
 
   return (
     <>

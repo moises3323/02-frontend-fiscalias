@@ -5,6 +5,9 @@ const initialState = {
   open: false,
   form: FiscaliaInterface(),
   fiscaliasList: [],
+  municipios: [],
+  departamentos: [],
+  processing: false,
 };
 
 const fiscaliaReducer = function (state = initialState, action) {
@@ -21,10 +24,39 @@ const fiscaliaReducer = function (state = initialState, action) {
         form: { ...action.payload },
       };
     }
+    case types.CREATE_FISCALIA:{
+      return{
+        ...state,
+        processing: true,
+      }
+    }
+    case types.SET_CREATE_FISCALIA:
     case types.GET_FISCALIAS: {
       return {
         ...state,
-        fiscaliasList: { ...action.payload },
+        processing: false,
+        fiscaliasList: [
+          ...state.fiscaliasList,
+          ...action.payload.map((fiscalia) => FiscaliaInterface(fiscalia)),
+        ],
+      };
+    }
+    case types.CARGAR_CATALOGOS: {
+      return {
+        ...state,
+        municipios: [
+          ...action.payload.mpios.map((mpio) => ({
+            value: mpio.id,
+            label: mpio.descripcion,
+            departamento_id: mpio.departamento.id
+          })),
+        ],
+        departamentos: [
+          ...action.payload.deptos.map((depto) => ({
+            value: depto.id,
+            label: depto.descripcion,
+          })),
+        ],
       };
     }
     default: {

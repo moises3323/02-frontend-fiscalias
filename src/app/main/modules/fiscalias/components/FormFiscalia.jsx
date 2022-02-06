@@ -1,5 +1,6 @@
 import ApsForm from '@components/ApsForm';
 import ApsBasicDialog from '@components/dialogs/ApsBasicDialog';
+import { useUpdateEffect } from '@hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import useFormFiscalia from '../hooks/useFormFiscalia';
 import { toggleFormFiscalia } from '../store/actions';
@@ -9,11 +10,22 @@ const FormFiscalia = () => {
   const open = useSelector(
     ({ FiscaliasModule }) => FiscaliasModule.fiscaliaForm.open
   );
+  const isProcessing = useSelector(
+    ({ FiscaliasModule }) => FiscaliasModule.fiscaliaForm.processing
+  );
+
   const { fields, formik, formikSubmit } = useFormFiscalia();
 
   const handleOpen = () => {
     dispatch(toggleFormFiscalia());
   };
+
+  useUpdateEffect(() => {
+    if (!isProcessing) {
+      handleOpen();
+      formik.resetForm(formik.initialValues);
+    }
+  }, [isProcessing]);
 
   return (
     <ApsBasicDialog
@@ -34,6 +46,7 @@ const FormFiscalia = () => {
       okProps={{
         text: 'Guardar',
         onClick: formikSubmit,
+        disabled: !formik.isValid || isProcessing,
       }}
     />
   );
