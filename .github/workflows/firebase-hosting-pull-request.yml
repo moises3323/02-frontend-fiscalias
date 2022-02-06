@@ -13,5 +13,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_LOQUESEA_C2368 }}'
-          projectId: loquesea-c2368
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ULTIMO_142313 }}'
+          projectId: ultimo-142313

@@ -24,7 +24,6 @@ export default function ApsBasicDialog({
   content,
   deleteButtonProps,
 }) {
-
   useEffect(() => {
     toogleModalFunction && toogleModalFunction(open);
   }, [open]);
