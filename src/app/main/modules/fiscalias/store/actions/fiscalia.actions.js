@@ -12,8 +12,8 @@ export const DELETE_FISCALIA = '[FISCALIA] DELETE_FISCALIA';
 export const CARGAR_CATALOGOS = '[FISCALIA] CARGAR_CATALOGOS';
 export const RESET_FORM = '[FISCALIA] RESET_FORM';
 
-//const urlBase = 'http://localhost:8080';
-const urlBase = 'https://ultimo-142313.uc.r.appspot.com';
+const urlBase = 'http://localhost:8080';
+//const urlBase = 'https://ultimo-142313.uc.r.appspot.com';
 
 export function toggleFormFiscalia() {
   return {
@@ -67,7 +67,7 @@ export function createFiscalia(body) {
 
 export function deleteFiscalia(id) {
   return async (dispatch) => {
-    const resp = await deleteRequest(`${urlBase}/fiscalia/${id}`);
+    await deleteRequest(`${urlBase}/fiscalia/${id}`);
     dispatch({ type: DELETE_FISCALIA, payload: id });
   };
 }

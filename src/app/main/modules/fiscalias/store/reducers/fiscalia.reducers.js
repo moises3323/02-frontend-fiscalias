@@ -35,7 +35,9 @@ const fiscaliaReducer = function (state = initialState, action) {
       let indexFiscalia = fiscaliasListCopy.findIndex(
         (fiscalia) => fiscalia.id === action.payload.id
       );
-      fiscaliasListCopy[indexFiscalia] = { ...stateaction.payload };
+      fiscaliasListCopy[indexFiscalia] = FiscaliaInterface({
+        ...action.payload,
+      });
       return {
         ...state,
         fiscaliasList: [...fiscaliasListCopy],
