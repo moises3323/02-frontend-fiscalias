@@ -24,11 +24,11 @@ const fiscaliaReducer = function (state = initialState, action) {
         form: { ...action.payload },
       };
     }
-    case types.CREATE_FISCALIA:{
-      return{
+    case types.CREATE_FISCALIA: {
+      return {
         ...state,
         processing: true,
-      }
+      };
     }
     case types.SET_CREATE_FISCALIA:
     case types.GET_FISCALIAS: {
@@ -48,7 +48,7 @@ const fiscaliaReducer = function (state = initialState, action) {
           ...action.payload.mpios.map((mpio) => ({
             value: mpio.id,
             label: mpio.descripcion,
-            departamento_id: mpio.departamento.id
+            departamento_id: mpio.departamento.id,
           })),
         ],
         departamentos: [
@@ -57,6 +57,15 @@ const fiscaliaReducer = function (state = initialState, action) {
             label: depto.descripcion,
           })),
         ],
+      };
+    }
+    case types.DELETE_FISCALIA: {
+      return {
+        ...state,
+        fiscaliasList: state.fiscaliasList.filter(
+          (fiscalia) => fiscalia.id !== action.payload
+        ),
+        open: false,
       };
     }
     default: {

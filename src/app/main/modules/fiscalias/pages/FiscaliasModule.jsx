@@ -14,7 +14,6 @@ import {
   toggleFormFiscalia,
 } from '../store/actions';
 import AddIcon from '@mui/icons-material/Add';
-import { FiscaliaInterface } from '../models/fiscaliaInterface';
 
 const itemsActions = [
   {
@@ -46,7 +45,6 @@ const FiscaliasModule = () => {
     dispatch(toggleFormFiscalia());
   };
   const handleEditar = (form) => {
-    console.log('form: ', form);
     dispatch(setFormFiscalia(form));
     dispatch(toggleFormFiscalia());
   };
@@ -72,7 +70,7 @@ const FiscaliasModule = () => {
     nombre: fiscalia.nombre,
     direccion: fiscalia.direccion,
     estado: fiscalia.estado,
-    acciones: (value) => handleEditar(fiscalia),
+    acciones: () => handleEditar(fiscalia),
   }));
 
   return (

@@ -34,7 +34,6 @@ const useFormFiscalia = () => {
   }, [form]);
 
   const formikSubmit = () => {
-    console.log('formik.values:', formik.values)
     dispatch(createFiscalia(formik.values));
   };
 
@@ -57,15 +56,15 @@ const useFormFiscalia = () => {
         select: true,
         options: [
           {
-            value: '1',
+            value: 1,
             label: 'Activo',
           },
           {
-            value: '0',
+            value: 0,
             label: 'Inactivo',
           },
         ],
-        validations: FieldValidations.requiredSelect,
+        // validations: FieldValidations.requiredSelect,
       },
       {
         id: '3',

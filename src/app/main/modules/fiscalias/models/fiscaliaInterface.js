@@ -26,23 +26,6 @@ export const FiscaliaInterface = (fiscalia = {}) => {
   return data;
 };
 
-export const FiscaliaEditarInterface = (fiscalia = {}) => {
-  return {
-    nombre: fiscalia.nombre || '',
-    estado: fiscalia.estado ?? '-1',
-    departamento_id: fiscalia.departamento || {
-      value: -1,
-      label: 'Sin selección',
-    },
-    municipio_id: fiscalia.municipio || {
-      value: -1,
-      label: 'Sin selección',
-    },
-    direccion: fiscalia.direccion || '',
-    descripcion: fiscalia.descripcion || '',
-  };
-};
-
 export const FiscaliaPostInterface = (fiscalia = {}) => {
   return {
     id: fiscalia.id,

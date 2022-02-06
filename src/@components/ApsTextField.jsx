@@ -35,7 +35,9 @@ const ApsTextField = ({
     : {};
 
   const _selectProps = () => {
-    const opciones = [{ value: '-1', label: 'Sin selección' }, ...options];
+    const opciones = [
+      /* { value: '-1', label: 'Sin selección' }, */ ...options,
+    ];
     return options.length
       ? {
           children: opciones.map((option) => (

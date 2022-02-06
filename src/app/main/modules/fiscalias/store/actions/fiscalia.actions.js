@@ -1,4 +1,4 @@
-import { getRequest, postRequest } from '@utils/httpMethods';
+import { getRequest, postRequest, deleteRequest } from '@utils/httpMethods';
 import { FiscaliaPostInterface } from '../../models/fiscaliaInterface';
 
 export const TOGGLE_FORM_FISCALIA = '[FISCALIA] TOGGLE_FORM_FISCALIA';
@@ -8,6 +8,8 @@ export const GET_FISCALIAS = '[FISCALIA] GET_FISCALIAS';
 export const CREATE_FISCALIA = '[FISCALIA] CREATE_FISCALIA';
 export const SET_CREATE_FISCALIA = '[FISCALIA] SET_CREATE_FISCALIA';
 //export const CREATE_FISCALIA_ERROR = '[FISCALIA] CREATE_FISCALIA_ERROR';
+
+export const DELETE_FISCALIA = '[FISCALIA] DELETE_FISCALIA';
 
 export const CARGAR_CATALOGOS = '[FISCALIA] CARGAR_CATALOGOS';
 
@@ -47,8 +49,8 @@ export function cargarCatalogos() {
 
 export function createFiscalia(body) {
   return async (dispatch) => {
-    dispatch({type: CREATE_FISCALIA})
-    console.log("body:", body)
+    dispatch({ type: CREATE_FISCALIA });
+    console.log('body:', body);
     const resp = await postRequest(
       `${urlBase}/fiscalia`,
       FiscaliaPostInterface(body)
@@ -56,5 +58,12 @@ export function createFiscalia(body) {
     //
 
     dispatch({ type: SET_CREATE_FISCALIA, payload: [resp.data] });
+  };
+}
+
+export function deleteFiscalia(id) {
+  return async (dispatch) => {
+    const resp = await deleteRequest(`${urlBase}/fiscalia/${id}`);
+    dispatch({ type: DELETE_FISCALIA, payload: id });
   };
 }

@@ -3,7 +3,7 @@ import ApsBasicDialog from '@components/dialogs/ApsBasicDialog';
 import { useUpdateEffect } from '@hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import useFormFiscalia from '../hooks/useFormFiscalia';
-import { toggleFormFiscalia } from '../store/actions';
+import { deleteFiscalia, toggleFormFiscalia } from '../store/actions';
 
 const FormFiscalia = () => {
   const dispatch = useDispatch();
@@ -29,6 +29,11 @@ const FormFiscalia = () => {
 
   return (
     <ApsBasicDialog
+      deleteButtonProps={
+        formik.values.id
+          ? { onClick: () => dispatch(deleteFiscalia(formik.values.id)) }
+          : undefined
+      }
       open={open}
       title={'Crear fiscalía'}
       description={
