@@ -82,7 +82,6 @@ const useFormFiscalia = () => {
             label: 'Inactivo',
           },
         ],
-        // validations: FieldValidations.requiredSelect,
       },
       {
         id: '3',

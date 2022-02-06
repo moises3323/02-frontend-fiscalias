@@ -50,7 +50,7 @@ const FiscaliasModule = () => {
   };
 
   const columns = [
-    { id: 'nombre', label: 'Nombre fiscalía', minWidth: 170 },
+    { id: 'nombre', label: 'Fiscalía', minWidth: 170 },
     { id: 'direccion', label: 'Dirección', minWidth: 100 },
     {
       id: 'estado',
@@ -69,7 +69,7 @@ const FiscaliasModule = () => {
   const rows = fiscalias.map((fiscalia) => ({
     nombre: fiscalia.nombre,
     direccion: fiscalia.direccion,
-    estado: fiscalia.estado,
+    estado: fiscalia.estado === 1 ? 'ACTIVA' : 'INACTIVA',
     acciones: () => handleEditar(fiscalia),
   }));
 

@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { IconButton } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
 export default function ApsTable({ columns, rows }) {
@@ -42,7 +42,11 @@ export default function ApsTable({ columns, rows }) {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
-                  {column.label}
+                  <Typography
+                    color="primary"
+                    variant={'h6'}
+                    children={column.label}
+                  />
                 </TableCell>
               ))}
             </TableRow>
@@ -62,7 +66,10 @@ export default function ApsTable({ columns, rows }) {
                               <EditIcon />
                             </IconButton>
                           ) : (
-                            value
+                            <Typography
+                              color={value === 'INACTIVA' ? 'error' : ''}
+                              children={value}
+                            />
                           )}
                         </TableCell>
                       );
