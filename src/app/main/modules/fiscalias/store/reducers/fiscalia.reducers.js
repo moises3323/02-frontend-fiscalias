@@ -33,11 +33,22 @@ const fiscaliaReducer = function (state = initialState, action) {
     case types.SET_CREATE_FISCALIA: {
       let fiscaliasListCopy = [...state.fiscaliasList];
       let indexFiscalia = fiscaliasListCopy.findIndex(
-        (fiscalia) => fiscalia.id === action.payload.id
+        (fiscalia) => fiscalia.id === action.payload.data.id
       );
-      fiscaliasListCopy[indexFiscalia] = FiscaliaInterface({
-        ...action.payload,
-      });
+
+      if (action.payload.isCreate) {
+        fiscaliasListCopy = [
+          ...fiscaliasListCopy,
+          FiscaliaInterface({
+            ...action.payload.data,
+          }),
+        ];
+      } else {
+        fiscaliasListCopy[indexFiscalia] = FiscaliaInterface({
+          ...action.payload.data,
+        });
+      }
+
       return {
         ...state,
         fiscaliasList: [...fiscaliasListCopy],

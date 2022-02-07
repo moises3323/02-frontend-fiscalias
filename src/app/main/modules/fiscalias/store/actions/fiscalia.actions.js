@@ -61,7 +61,7 @@ export function createFiscalia(body) {
       `${urlBase}/fiscalia`,
       FiscaliaPostInterface(body)
     );
-    dispatch({ type: SET_CREATE_FISCALIA, payload: { ...resp.data } });
+    dispatch({ type: SET_CREATE_FISCALIA, payload: { data: {...resp.data}, isCreate: !Boolean(body.id) } });
   };
 }
 
