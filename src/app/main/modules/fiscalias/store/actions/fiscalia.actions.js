@@ -63,7 +63,7 @@ export function createFiscalia(body) {
     );
     dispatch({
       type: SET_CREATE_FISCALIA,
-      payload: { data: { ...resp.data }, isCreate: !Boolean(body.id) },
+      payload: { data: { ...resp.data }, isEdit: Boolean(body.id) },
     });
   };
 }

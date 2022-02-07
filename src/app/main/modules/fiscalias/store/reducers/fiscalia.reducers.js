@@ -36,17 +36,17 @@ const fiscaliaReducer = function (state = initialState, action) {
         (fiscalia) => fiscalia.id === action.payload.data.id
       );
 
-      if (action.payload.isCreate) {
+      if (action.payload.isEdit) {
+        fiscaliasListCopy[indexFiscalia] = FiscaliaInterface({
+          ...action.payload.data,
+        });
+      } else {
         fiscaliasListCopy = [
           ...fiscaliasListCopy,
           FiscaliaInterface({
             ...action.payload.data,
           }),
         ];
-      } else {
-        fiscaliasListCopy[indexFiscalia] = FiscaliaInterface({
-          ...action.payload.data,
-        });
       }
 
       return {
