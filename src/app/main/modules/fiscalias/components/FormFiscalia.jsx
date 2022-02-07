@@ -1,5 +1,6 @@
 import ApsForm from '@components/ApsForm';
 import ApsBasicDialog from '@components/dialogs/ApsBasicDialog';
+import { Skeleton, Stack } from '@mui/material';
 import useFormFiscalia from '../hooks/useFormFiscalia';
 
 const FormFiscalia = () => {
@@ -27,7 +28,17 @@ const FormFiscalia = () => {
       }
       content={
         <div style={{ marginTop: '24px' }}>
-          <ApsForm title="" fields={fields} formik={formik} />
+          {isProcessing ? (
+            <Stack spacing={3}>
+              <Skeleton variant="rectangular" width={'100%'} height={50} />
+              <Skeleton variant="rectangular" width={'100%'} height={50} />
+              <Skeleton variant="rectangular" width={'100%'} height={50} />
+              <Skeleton variant="rectangular" width={'100%'} height={50} />
+              <Skeleton variant="rectangular" width={'100%'} height={150} />
+            </Stack>
+          ) : (
+            <ApsForm title="" fields={fields} formik={formik} />
+          )}
         </div>
       }
       cancelProps={{
@@ -35,7 +46,7 @@ const FormFiscalia = () => {
         onClick: handleOpen,
       }}
       okProps={{
-        text: 'Guardar',
+        text: isProcessing ? 'Guardando' : 'Guardar',
         onClick: formikSubmit,
         disabled: !formik.isValid || isProcessing,
       }}

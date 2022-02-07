@@ -2,7 +2,6 @@ import React, { useLayoutEffect } from 'react';
 import GeneralContainer from '@components/generalContainer/GeneralContainer';
 import PrintIcon from '@mui/icons-material/Print';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import { Grid } from '@mui/material';
 import ApsTable from '@components/table/ApsTable';
 import FormFiscalia from '../components/FormFiscalia';
 import withReducer from '@store/withReducer';
@@ -84,13 +83,7 @@ const FiscaliasModule = () => {
           onClick: handleOpen,
           startIcon: <AddIcon />,
         }}
-        container={
-          <Grid container spacing={3}>
-            <Grid item md={12} sm={12}>
-              <ApsTable rows={rows} columns={columns} />
-            </Grid>
-          </Grid>
-        }
+        container={<ApsTable rows={rows} columns={columns} />}
       />
       <FormFiscalia />
     </>

@@ -9,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
 
@@ -44,8 +45,9 @@ const iconListClassOpen = {
 const boxIconAvatar = {
   '&.MuiBox-root': {
     display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '30px',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: '32px',
   },
 };
 
@@ -132,7 +134,22 @@ const MainDrawer = () => {
       </Toolbar>
 
       <Box sx={boxIconAvatar}>
-        <Avatar open={open} src=""></Avatar>
+        <Avatar
+          open={open}
+          src="https://cdn2.actitudfem.com/media/files/styles/large/public/images/2018/01/beckdestacada.jpg"
+        ></Avatar>
+        {open && (
+          <div style={{ paddingTop: '8px' }}>
+            <Typography
+              sx={{ color: theme.palette.grey[50] }}
+              children="David Beckham"
+            />
+            <Typography
+              sx={{ color: theme.palette.grey[50] }}
+              children="Administrador"
+            />
+          </div>
+        )}
       </Box>
 
       {routes.map((route) => (
