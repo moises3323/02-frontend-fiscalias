@@ -1,6 +1,5 @@
 import React, { useLayoutEffect } from 'react';
 import GeneralContainer from '@components/generalContainer/GeneralContainer';
-import PrintIcon from '@mui/icons-material/Print';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import ApsTable from '@components/table/ApsTable';
 import FormFiscalia from '../components/FormFiscalia';
@@ -14,20 +13,7 @@ import {
 } from '../store/actions';
 import AddIcon from '@mui/icons-material/Add';
 
-const itemsActions = [
-  {
-    id: 1,
-    icon: <PrintIcon />,
-    title: 'Imprimir',
-    onClick: () => console.log('Imprimir'),
-  },
-  {
-    id: 2,
-    icon: <CloudDownloadIcon />,
-    title: 'Descargar',
-    onClick: () => console.log('Descargar'),
-  },
-];
+import ReportePdf from '../components/ReportePdf';
 
 const FiscaliasModule = () => {
   const dispatch = useDispatch();
@@ -71,6 +57,15 @@ const FiscaliasModule = () => {
     estado: fiscalia.estado === 1 ? 'ACTIVA' : 'INACTIVA',
     acciones: () => handleEditar(fiscalia),
   }));
+
+  const itemsActions = [
+    {
+      id: 1,
+      icon: <CloudDownloadIcon />,
+      title: <ReportePdf rows={rows} />,
+      onClick: () => console.log('Descargar'),
+    },
+  ];
 
   return (
     <>
